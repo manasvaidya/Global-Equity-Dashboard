@@ -131,6 +131,3 @@ df.drop(columns = ['Instrument'], inplace=True)
 
 
 
-
-df
-
