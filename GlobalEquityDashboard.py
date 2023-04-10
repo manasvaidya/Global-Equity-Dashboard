@@ -36,7 +36,11 @@ dict_sectors = {
     "Consumer Discretionary": "CNDISWD",
     "Industrials": "INDUSWD",
     "Healthcare": "HLTHCWD",
-    "Consumer Staples": "COSTPWD",
+    "Consumer Staples": "C
+    
+    
+    
+    TPWD",
     "Energy": "ENEGYWD",
     "Basic Materials": "BMATRWD",
     "Telecom": "TELCMWD",
@@ -1226,121 +1230,123 @@ df = df.T
 
 
 
-######################################################################################
-################### Format Output
-######################################################################################
+# ######################################################################################
+# ################### Format Output
+# ######################################################################################
 
-def make_pretty(styler):
-    # Set Decimal Precision
-    styler.format(precision=1)
+# def make_pretty(styler):
+#     # Set Decimal Precision
+#     styler.format(precision=1)
     
     
-    # Create Title
-    caption_styles = [dict(selector="caption",
-            props=[("text-align", "centre"),
-                   ("font-size", "120%"),
-                   ("color", 'black'),
-                  ('caption-side', 'top')])]
+#     # Create Title
+#     caption_styles = [dict(selector="caption",
+#             props=[("text-align", "centre"),
+#                    ("font-size", "120%"),
+#                    ("color", 'black'),
+#                   ('caption-side', 'top')])]
     
-    styler.set_caption("Global Equity Sector Dashboard [Source: Refinitiv DataStream, Acorn MC Ltd]").set_table_styles(caption_styles, overwrite=False)
-    
-    
-    # Create border for entire table
-    styler.set_table_styles([{'selector' : '',
-                            'props' : [('border','1px solid black')]}], overwrite=False)
-    
-    # Background color for all rows
-    styler.set_table_styles([{'selector': 'td',
-                              'props': [('background-color', 'white')]}], overwrite=False)
-    
-    # Set border color between columns
-    styler.set_table_styles([
-        {'selector': 'td', 'props': 'border-left: 1px solid black'},
-        {'selector': 'td', 'props': 'border-right: 1px solid black'}
-    ]
-    , overwrite=False, axis=0)
-    
-    # Background color for column headers and row index
-    styler.set_table_styles([
-        {'selector': 'th:not(.index_name)', 'props': 'background-color: #CCCEE7; color: black;'}
-    ], overwrite=False)
+#     styler.set_caption("Global Equity Sector Dashboard [Source: Refinitiv DataStream, Acorn MC Ltd]").set_table_styles(caption_styles, overwrite=False)
     
     
-    # Set border color between headers
-    styler.set_table_styles({("Technology"): [
-        {'selector': 'th', 'props': 'border-left: 1px solid black'},
-        {'selector': 'th', 'props': 'border-right: 1px solid black'},
-    ]}, overwrite=False, axis=0)
+#     # Create border for entire table
+#     styler.set_table_styles([{'selector' : '',
+#                             'props' : [('border','1px solid black')]}], overwrite=False)
     
-    styler.set_table_styles({("Consumer Discretionary"): [
-        {'selector': 'th', 'props': 'border-left: 1px solid black'},
-        {'selector': 'th', 'props': 'border-right: 1px solid black'},
-    ]}, overwrite=False, axis=0)
+#     # Background color for all rows
+#     styler.set_table_styles([{'selector': 'td',
+#                               'props': [('background-color', 'white')]}], overwrite=False)
     
+#     # Set border color between columns
+#     styler.set_table_styles([
+#         {'selector': 'td', 'props': 'border-left: 1px solid black'},
+#         {'selector': 'td', 'props': 'border-right: 1px solid black'}
+#     ]
+#     , overwrite=False, axis=0)
     
-    styler.set_table_styles({("Healthcare"): [
-        {'selector': 'th', 'props': 'border-left: 1px solid black'},
-        {'selector': 'th', 'props': 'border-right: 1px solid black'},
-    ]}, overwrite=False, axis=0)
-    
-    styler.set_table_styles({("Energy"): [
-        {'selector': 'th', 'props': 'border-left: 1px solid black'},
-        {'selector': 'th', 'props': 'border-right: 1px solid black'},
-    ]}, overwrite=False, axis=0)
-    
-    styler.set_table_styles({("Telecom"): [
-        {'selector': 'th', 'props': 'border-left: 1px solid black'},
-        {'selector': 'th', 'props': 'border-right: 1px solid black'},
-    ]}, overwrite=False, axis=0)
-    
-    styler.set_table_styles({("Real Estate"): [
-        {'selector': 'th', 'props': 'border-left: 1px solid black'},
-        {'selector': 'th', 'props': 'border-right: 1px solid black'},
-    ]}, overwrite=False, axis=0)
+#     # Background color for column headers and row index
+#     styler.set_table_styles([
+#         {'selector': 'th:not(.index_name)', 'props': 'background-color: #CCCEE7; color: black;'}
+#     ], overwrite=False)
     
     
+#     # Set border color between headers
+#     styler.set_table_styles({("Technology"): [
+#         {'selector': 'th', 'props': 'border-left: 1px solid black'},
+#         {'selector': 'th', 'props': 'border-right: 1px solid black'},
+#     ]}, overwrite=False, axis=0)
+    
+#     styler.set_table_styles({("Consumer Discretionary"): [
+#         {'selector': 'th', 'props': 'border-left: 1px solid black'},
+#         {'selector': 'th', 'props': 'border-right: 1px solid black'},
+#     ]}, overwrite=False, axis=0)
     
     
-    def index_level0(s):
-        return np.where(s.isin(['Performance', 'Cyclicality','']), 
-                        "border-bottom: 1px solid black; border-top: 1px solid black;", "")
+#     styler.set_table_styles({("Healthcare"): [
+#         {'selector': 'th', 'props': 'border-left: 1px solid black'},
+#         {'selector': 'th', 'props': 'border-right: 1px solid black'},
+#     ]}, overwrite=False, axis=0)
     
-    styler.apply_index(index_level0)  
+#     styler.set_table_styles({("Energy"): [
+#         {'selector': 'th', 'props': 'border-left: 1px solid black'},
+#         {'selector': 'th', 'props': 'border-right: 1px solid black'},
+#     ]}, overwrite=False, axis=0)
     
+#     styler.set_table_styles({("Telecom"): [
+#         {'selector': 'th', 'props': 'border-left: 1px solid black'},
+#         {'selector': 'th', 'props': 'border-right: 1px solid black'},
+#     ]}, overwrite=False, axis=0)
     
-    def index_level1_bottom(s):
-        return np.where(s.isin(['Market Cap (%)', '3Yr CAGR (%)', 'Advance/Decline Line','DXY Correlation', 
-                                'Profit Margin (%)','Dividend Yield', 'Valuation Z-Score', 
-                                'Tupper Pre./Dis/ (%)', 'Operation Z-Score']), 
-                        "border-bottom: 1px solid black;", "")
-    styler.apply_index(index_level1_bottom)
-    
-    
-    def index_level1_top(s):
-        return np.where(s.isin(['Market Cap (%)']), 
-                        "border-top: 1px solid black;", "")
-    styler.apply_index(index_level1_top)
+#     styler.set_table_styles({("Real Estate"): [
+#         {'selector': 'th', 'props': 'border-left: 1px solid black'},
+#         {'selector': 'th', 'props': 'border-right: 1px solid black'},
+#     ]}, overwrite=False, axis=0)
     
     
     
     
-    return styler
+#     def index_level0(s):
+#         return np.where(s.isin(['Performance', 'Cyclicality','']), 
+#                         "border-bottom: 1px solid black; border-top: 1px solid black;", "")
+    
+#     styler.apply_index(index_level0)  
+    
+    
+#     def index_level1_bottom(s):
+#         return np.where(s.isin(['Market Cap (%)', '3Yr CAGR (%)', 'Advance/Decline Line','DXY Correlation', 
+#                                 'Profit Margin (%)','Dividend Yield', 'Valuation Z-Score', 
+#                                 'Tupper Pre./Dis/ (%)', 'Operation Z-Score']), 
+#                         "border-bottom: 1px solid black;", "")
+#     styler.apply_index(index_level1_bottom)
+    
+    
+#     def index_level1_top(s):
+#         return np.where(s.isin(['Market Cap (%)']), 
+#                         "border-top: 1px solid black;", "")
+#     styler.apply_index(index_level1_top)
+    
+    
+    
+    
+#     return styler
     
 
-result = df.style.pipe(make_pretty)
+# result = df.style.pipe(make_pretty)
 
  
-# CSS to inject contained in a string
-hide_table_row_index = """
-            <style>
-            thead tr th:first-child {display:none}
-            tbody th {display:none}
-            </style>
-            """
+# # CSS to inject contained in a string
+# hide_table_row_index = """
+#             <style>
+#             thead tr th:first-child {display:none}
+#             tbody th {display:none}
+#             </style>
+#             """
 
-# Inject CSS with Markdown
-st.markdown(hide_table_row_index, unsafe_allow_html=True)
+# # Inject CSS with Markdown
+# st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
 
-#st.dataframe(result, use_container_width=True)
-st.table(result)
+# #st.dataframe(result, use_container_width=True)
+# st.table(result)
+
+st.dataframe(df, use_container_width=True)
