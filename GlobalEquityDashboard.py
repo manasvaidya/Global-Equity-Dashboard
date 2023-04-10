@@ -1334,16 +1334,16 @@ def make_pretty(styler):
 result = df.style.pipe(make_pretty)
 
  
-# CSS to inject contained in a string
-hide_table_row_index = """
-            <style>
-            thead tr th:first-child {display:none}
-            tbody th {display:none}
-            </style>
-            """
+# # CSS to inject contained in a string
+# hide_table_row_index = """
+#             <style>
+#             thead tr th:first-child {display:none}
+#             tbody th {display:none}
+#             </style>
+#             """
 
-# Inject CSS with Markdown
-st.markdown(hide_table_row_index, unsafe_allow_html=True)
+# # Inject CSS with Markdown
+# st.markdown(hide_table_row_index, unsafe_allow_html=True)
 
 
 #st.dataframe(result, use_container_width=True)
