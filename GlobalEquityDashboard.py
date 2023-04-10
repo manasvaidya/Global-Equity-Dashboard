@@ -60,6 +60,7 @@ dict_ibes = {
 
 
 
+
 # Sector Names List
 input_sectors = ['Technology', 'Financials', 'Consumer Discretionary', 'Industrials', 'Healthcare',
                  'Consumer Staples', 'Energy', 'Basic Materials', 'Telecom', 'Utilities', 'Real Estate']
@@ -79,51 +80,3 @@ freq_m = "M"
 UP = '<span style="color:green;">&#x25B2;</span>'
 DOWN = '<span style="color:red;">&#x25BC;</span>'
 
-
-# Create empty data frame
-df = pd.DataFrame(input_sectors, columns = ['sector'])
-
-# Create DS Sector Codes column
-df['sector_ticker'] = df['sector'].map(dict_sectors)
-
-# Create G#L modified DS sector codes column
-df['sector_ticker_gl'] = 'G#L' + df['sector_ticker']
-
-# Create IBES ticker codes column
-df['sector_ticker_ibes'] = df['sector'].map(dict_ibes)
-
-# Create Tickers
-tickers = ','.join(df['sector_ticker'])
-tickers_gl = ','.join(df['sector_ticker_gl'].to_list())
-tickers_ibes = ','.join(df['sector_ticker_ibes'].to_list())
-
-
-
-
-########################################################################################################
-#################################### PERFORMANCE #######################################################
-########################################################################################################
-
-
-
-
-############################################# MTD (%) Metric ##########################################
-
-# MTD parameters
-fields_mtd = ['PCHV#(X,MTD)']
-
-# Create MTD metric dataframe
-df_mtd = ds.get_data(tickers = tickers, 
-            start = start, 
-            end = end,
-            freq = freq_d,
-            fields=fields_mtd
-           )
-
-# Merge to main dataframe
-df = df.merge(df_mtd[['Instrument', 'Value']], left_on = 'sector_ticker', right_on = 'Instrument', how='left')
-df.rename(columns = {'Value': 'mtd_performance'}, inplace=True)
-df.drop(columns = ['Instrument'], inplace=True)
-
-
-st.dataframe(df, use_container_width=True)
