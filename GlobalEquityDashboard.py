@@ -6,11 +6,12 @@ import eikon as ek
 import matplotlib.pyplot as plt
 import DatastreamDSWS as DSWS
 from datetime import datetime as dt
-import os
-import dataframe_image as dfi
-pd.set_option('display.max_columns', None)
 
 
+
+loop = new_event_loop()
+set_event_loop(loop)
+results = run(coro)
 
 
 ##############################################
