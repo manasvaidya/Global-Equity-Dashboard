@@ -2,8 +2,6 @@
 ########## Package Imports
 ###########################################
 import pandas as pd, numpy as np
-import eikon as ek 
-import matplotlib.pyplot as plt
 import DatastreamDSWS as DSWS
 from datetime import datetime as dt
 
