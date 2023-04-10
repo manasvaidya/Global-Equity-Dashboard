@@ -101,5 +101,43 @@ tickers_ibes = ','.join(df['sector_ticker_ibes'].to_list())
 
 
 
+
+
+########################################################################################################
+#################################### PERFORMANCE #######################################################
+########################################################################################################
+
+
+
+
+############################################# MTD (%) Metric ##########################################
+
+# MTD parameters
+fields_mtd = ['PCHV#(X,MTD)']
+
+# Create MTD metric dataframe
+df_mtd = ds.get_data(tickers = tickers, 
+            start = start, 
+            end = end,
+            freq = freq_d,
+            fields=fields_mtd
+           )
+
+# Merge to main dataframe
+df = df.merge(df_mtd[['Instrument', 'Value']], left_on = 'sector_ticker', right_on = 'Instrument', how='left')
+df.rename(columns = {'Value': 'mtd_performance'}, inplace=True)
+df.drop(columns = ['Instrument'], inplace=True)
+
+
+
+
+
+
+
+
+
+
+
+
 st.dataframe(df)
 
