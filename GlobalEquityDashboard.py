@@ -80,3 +80,26 @@ freq_m = "M"
 UP = '<span style="color:green;">&#x25B2;</span>'
 DOWN = '<span style="color:red;">&#x25BC;</span>'
 
+
+
+# Create empty data frame
+df = pd.DataFrame(input_sectors, columns = ['sector'])
+
+# Create DS Sector Codes column
+df['sector_ticker'] = df['sector'].map(dict_sectors)
+
+# Create G#L modified DS sector codes column
+df['sector_ticker_gl'] = 'G#L' + df['sector_ticker']
+
+# Create IBES ticker codes column
+df['sector_ticker_ibes'] = df['sector'].map(dict_ibes)
+
+# Create Tickers
+tickers = ','.join(df['sector_ticker'])
+tickers_gl = ','.join(df['sector_ticker_gl'].to_list())
+tickers_ibes = ','.join(df['sector_ticker_ibes'].to_list())
+
+
+
+st.dataframe(df)
+
