@@ -132,12 +132,5 @@ df.drop(columns = ['Instrument'], inplace=True)
 
 
 
-
-
-
-
-
-
-
-st.dataframe(df)
+df
 
