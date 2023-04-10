@@ -36,11 +36,7 @@ dict_sectors = {
     "Consumer Discretionary": "CNDISWD",
     "Industrials": "INDUSWD",
     "Healthcare": "HLTHCWD",
-    "Consumer Staples": "C
-    
-    
-    
-    TPWD",
+    "Consumer Staples": "COSTPWD",
     "Energy": "ENEGYWD",
     "Basic Materials": "BMATRWD",
     "Telecom": "TELCMWD",
@@ -62,7 +58,6 @@ dict_ibes = {
     "Utilities": "@:AFM1U1",
     "Real Estate": "@:AFM1RE" #"@:AFM2R2"
 }
-
 
 
 
